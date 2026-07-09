@@ -21,7 +21,6 @@ const navLinks = [
     ]
   },
   { name: 'Portfolio', href: '/portfolio' },
-  { name: 'Team', href: '/team' },
   { name: 'Blog', href: '/blog' },
   { name: 'Contact Us', href: '/contact' },
 ];
@@ -75,19 +74,11 @@ const Navbar = () => {
             to="/"
             style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}
           >
-            <span
-              style={{
-                fontFamily: 'var(--font-heading)',
-                fontSize: '1.6rem',
-                fontWeight: 700,
-                background: 'linear-gradient(135deg, #6C63FF, #00D9FF)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
-            >
-              AryChitra
-            </span>
+            <img 
+              src="/arychitralogo.png" 
+              alt="AryChitra Logo" 
+              style={{ height: '40px', objectFit: 'contain', transform: 'scale(2.2)', transformOrigin: 'left center' }} 
+            />
           </Link>
 
           {/* Desktop Links */}

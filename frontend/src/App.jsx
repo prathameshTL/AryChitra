@@ -15,7 +15,6 @@ import ServicesPage from './pages/ServicesPage';
 import PortfolioPage from './pages/PortfolioPage';
 import ContactPage from './pages/ContactPage';
 import WhyChooseUsPage from './pages/WhyChooseUsPage';
-import TeamPage from './pages/TeamPage';
 import BlogPage from './pages/BlogPage';
 import OrderPage from './pages/OrderPage';
 
@@ -41,7 +40,6 @@ const AnimatedRoutes = () => {
         <Route path="/why-choose-us" element={<PageTransition><WhyChooseUsPage /></PageTransition>} />
         <Route path="/services" element={<PageTransition><ServicesPage /></PageTransition>} />
         <Route path="/portfolio" element={<PageTransition><PortfolioPage /></PageTransition>} />
-        <Route path="/team" element={<PageTransition><TeamPage /></PageTransition>} />
         <Route path="/blog" element={<PageTransition><BlogPage /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
         

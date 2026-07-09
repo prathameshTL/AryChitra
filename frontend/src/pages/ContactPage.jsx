@@ -126,9 +126,9 @@ const ContactPage = () => {
             >
               <div style={{ marginBottom: '3rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 {[
-                  { icon: <Mail size={24} />, title: 'Email Us', desc: 'hello@arychitra.com' },
-                  { icon: <Phone size={24} />, title: 'Call Us', desc: '+1 (555) 123-4567' },
-                  { icon: <MapPin size={24} />, title: 'Visit HQ', desc: '123 Tech Avenue, Suite 400\nSan Francisco, CA 94105' },
+                  { icon: <Mail size={24} />, title: 'Email Us', desc: 'arychitra26@gmail.com' },
+                  { icon: <Phone size={24} />, title: 'Call Us', desc: '+91 73879 64277' },
+                  { icon: <MapPin size={24} />, title: 'Visit HQ', desc: 'Pimpri, Pune' },
                 ].map((item, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
                     <div style={{ width: '50px', height: '50px', borderRadius: '12px', background: 'rgba(108, 99, 255, 0.1)', border: '1px solid rgba(108, 99, 255, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-blue)', flexShrink: 0 }}>
@@ -152,7 +152,7 @@ const ContactPage = () => {
                     scrolling="no" 
                     marginHeight="0" 
                     marginWidth="0" 
-                    src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=San%20Francisco+(AryChitra)&amp;t=k&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                    src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Pimpri,%20Pune+(AryChitra)&amp;t=k&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
                     style={{ filter: 'grayscale(1) invert(1) contrast(1.2)' }}
                  ></iframe>
               </div>

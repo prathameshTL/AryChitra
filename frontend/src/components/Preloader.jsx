@@ -34,18 +34,22 @@ const Preloader = ({ isLoading }) => {
             <motion.div
               className="preloader-logo"
               animate={{
-                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                scale: [1, 1.05, 1],
+                opacity: [0.8, 1, 0.8]
               }}
               transition={{ duration: 2, repeat: Infinity }}
               style={{
-                background: 'linear-gradient(135deg, #6C63FF, #00D9FF, #A78BFA, #6C63FF)',
-                backgroundSize: '300% 300%',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginBottom: '1rem'
               }}
             >
-              AryChitra
+              <img 
+                src="/arychitralogo.png" 
+                alt="AryChitra Logo" 
+                style={{ height: '180px', objectFit: 'contain' }} 
+              />
             </motion.div>
 
             {/* Progress Bar */}

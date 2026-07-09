@@ -19,19 +19,11 @@ const Footer = () => {
           {/* Column 1: Brand */}
           <div>
             <Link to="/" onClick={handleScrollTop} style={{ display: 'inline-block', marginBottom: '1.5rem', textDecoration: 'none' }}>
-              <span
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '1.8rem',
-                  fontWeight: 700,
-                  background: 'linear-gradient(135deg, #6C63FF, #00D9FF)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
-                AryChitra
-              </span>
+              <img 
+                src="/arychitralogo.png" 
+                alt="AryChitra Logo" 
+                style={{ height: '45px', objectFit: 'contain', transform: 'scale(4)', transformOrigin: 'left center', marginBottom: '3rem', marginTop: '1rem' }} 
+              />
             </Link>
             <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '2rem' }}>
               Crafting premium digital futures through innovative software engineering and stunning user experiences. We transform bold ideas into scalable realities.
@@ -71,7 +63,6 @@ const Footer = () => {
                 { name: 'About Us', path: '/about' },
                 { name: 'Why Choose Us', path: '/why-choose-us' },
                 { name: 'Portfolio', path: '/portfolio' },
-                { name: 'Our Team', path: '/team' },
                 { name: 'Latest Blog', path: '/blog' },
               ].map((link) => (
                 <li key={link.name}>
@@ -135,11 +126,11 @@ const Footer = () => {
             <ul style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', color: 'var(--text-secondary)', padding: 0, margin: '0 0 2rem 0', listStyle: 'none' }}>
               <li>
                 <span style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '0.2rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Email</span>
-                <a href="mailto:hello@arychitra.com" style={{ color: 'var(--text-primary)', transition: 'color 0.3s', textDecoration: 'none' }} onMouseOver={e => e.currentTarget.style.color = 'var(--accent-blue)'} onMouseOut={e => e.currentTarget.style.color = 'var(--text-primary)'}>hello@arychitra.com</a>
+                <a href="mailto:arychitra26@gmail.com" style={{ color: 'var(--text-primary)', transition: 'color 0.3s', textDecoration: 'none' }} onMouseOver={e => e.currentTarget.style.color = 'var(--accent-blue)'} onMouseOut={e => e.currentTarget.style.color = 'var(--text-primary)'}>arychitra26@gmail.com</a>
               </li>
               <li>
                 <span style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '0.2rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Phone</span>
-                <span style={{ color: 'var(--text-primary)' }}>+1 (555) 123-4567</span>
+                <span style={{ color: 'var(--text-primary)' }}>+91 73879 64277</span>
               </li>
             </ul>
             

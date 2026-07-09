@@ -66,9 +66,9 @@ const ContactSection = () => {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
               {[
-                { icon: <Mail size={24} />, title: 'Email Us', desc: 'hello@arychitra.com' },
-                { icon: <Phone size={24} />, title: 'Call Us', desc: '+1 (555) 123-4567' },
-                { icon: <MapPin size={24} />, title: 'Visit Us', desc: 'San Francisco, CA (HQ)' },
+                { icon: <Mail size={24} />, title: 'Email Us', desc: 'arychitra26@gmail.com' },
+                { icon: <Phone size={24} />, title: 'Call Us', desc: '+91 73879 64277' },
+                { icon: <MapPin size={24} />, title: 'Visit Us', desc: 'Pimpri, Pune (HQ)' },
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
                   <div
