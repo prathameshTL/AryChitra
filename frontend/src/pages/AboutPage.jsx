@@ -89,7 +89,7 @@ const AboutPage = () => {
               <h2 className="section-title">Our <span className="text-gradient">Journey</span></h2>
               <div style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: 1.8, display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <p>
-                  Founded on the principle that enterprise software doesn't have to be clunky, AryChitra began as a small, highly specialized team of engineers and designers. We noticed a distinct gap in the market: businesses were often forced to choose between highly functional but unintuitive legacy systems, or beautiful but structurally weak modern applications.
+                  Founded by <strong>Pornima Babhulgaonkar (Founder & CEO)</strong> on the principle that enterprise software doesn't have to be clunky, AryChitra began as a small, highly specialized team of engineers and designers. We noticed a distinct gap in the market: businesses were often forced to choose between highly functional but unintuitive legacy systems, or beautiful but structurally weak modern applications.
                 </p>
                 <p>
                   We set out to bridge that gap. By combining rigorous computer science fundamentals with cutting-edge UI/UX design, we started engineering platforms that were both technical marvels and a joy to use. Our early successes in the Fintech and Healthcare sectors proved that our hybrid approach—valuing aesthetics as much as algorithms—yielded incredible ROI for our clients.
@@ -119,6 +119,35 @@ const AboutPage = () => {
                 </div>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Founder Profile */}
+      <section className="section" style={{ position: 'relative', overflow: 'hidden', paddingTop: '1rem', paddingBottom: '3rem' }}>
+        {/* Background Effects */}
+        <div className="glow-orb glow-orb-purple" style={{ width: '500px', height: '500px', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', opacity: 0.5 }} />
+        
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div className="glass-card" style={{ maxWidth: '850px', margin: '0 auto', textAlign: 'center', borderRadius: '30px', padding: '4rem 3rem', border: '1px solid rgba(108, 99, 255, 0.3)', boxShadow: '0 20px 40px rgba(0,0,0,0.3)', backdropFilter: 'blur(20px)' }}>
+            
+            <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '60px', height: '60px', borderRadius: '50%', background: 'rgba(108, 99, 255, 0.1)', border: '1px solid rgba(108, 99, 255, 0.2)', color: 'var(--accent-blue)', fontSize: '1.5rem', marginBottom: '1.5rem' }}>
+              <span style={{ transform: 'translateY(-2px)' }}>❝</span>
+            </div>
+
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1.25rem', lineHeight: 1.9, fontStyle: 'italic', marginBottom: '2.5rem', fontWeight: 300 }}>
+              "With a passion for scalable architecture and elegant design, I founded AryChitra to redefine the standards of software engineering. My vision is to bridge the gap between complex enterprise requirements and intuitive, premium digital experiences."
+            </p>
+            
+            <div style={{ width: '60px', height: '2px', background: 'var(--gradient-primary)', margin: '0 auto 2rem' }} />
+
+            <h3 style={{ fontSize: '2.8rem', marginBottom: '0.5rem', background: 'var(--gradient-primary)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontFamily: 'var(--font-heading)' }}>
+              Pornima Babhulgaonkar
+            </h3>
+            
+            <span style={{ fontSize: '1.1rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 600 }}>
+              Founder & Chief Executive Officer
+            </span>
           </div>
         </div>
       </section>
