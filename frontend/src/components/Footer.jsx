@@ -9,20 +9,20 @@ const Footer = () => {
 
   return (
     <footer style={{ background: 'var(--bg-tertiary)', borderTop: '1px solid var(--border-color)', paddingTop: '5rem', position: 'relative', overflow: 'hidden' }}>
-      
+
       {/* Decorative gradient line at top */}
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '2px', background: 'var(--gradient-primary)' }} />
 
       <div className="container">
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '4rem', marginBottom: '4rem' }}>
-          
+
           {/* Column 1: Brand */}
           <div>
             <Link to="/" onClick={handleScrollTop} style={{ display: 'inline-block', marginBottom: '1.5rem', textDecoration: 'none' }}>
-              <img 
-                src="/arychitralogo.png" 
-                alt="AryChitra Logo" 
-                style={{ height: '45px', objectFit: 'contain', transform: 'scale(4)', transformOrigin: 'left center', marginBottom: '3rem', marginTop: '1rem' }} 
+              <img
+                src="/arychitralogo.png"
+                alt="AryChitra Logo"
+                style={{ height: '45px', objectFit: 'contain', transform: 'scale(4)', transformOrigin: 'left center', marginBottom: '3rem', marginTop: '1rem' }}
               />
             </Link>
             <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '2rem' }}>
@@ -86,7 +86,7 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-          
+
           {/* Column 3: Services */}
           <div>
             <h4 style={{ fontSize: '1.2rem', marginBottom: '1.5rem', color: 'var(--text-primary)' }}>Our Services</h4>
@@ -133,26 +133,26 @@ const Footer = () => {
                 <span style={{ color: 'var(--text-primary)' }}>+91 73879 64277</span>
               </li>
             </ul>
-            
+
             <h4 style={{ fontSize: '1rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>Newsletter</h4>
             <div style={{ display: 'flex', gap: '0.5rem' }}>
-              <input 
-                type="email" 
-                placeholder="Your email address" 
-                style={{ 
-                  flex: 1, 
-                  padding: '0.8rem 1rem', 
-                  background: 'var(--glass-bg)', 
-                  border: '1px solid var(--border-color)', 
-                  borderRadius: '8px', 
+              <input
+                type="email"
+                placeholder="Your email address"
+                style={{
+                  flex: 1,
+                  padding: '0.8rem 1rem',
+                  background: 'var(--glass-bg)',
+                  border: '1px solid var(--border-color)',
+                  borderRadius: '8px',
                   color: 'var(--text-primary)',
                   outline: 'none',
                   fontSize: '0.9rem'
-                }} 
+                }}
               />
-              <button 
-                className="btn btn-primary" 
-                style={{ padding: '0.8rem 1.2rem', borderRadius: '8px' }}
+              <button
+                className="btn btn-primary"
+                style={{ padding: '0.8rem 1.2rem', borderRadius: '8px', flexShrink: 0, whiteSpace: 'nowrap' }}
               >
                 Subscribe
               </button>
@@ -163,7 +163,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div style={{ borderTop: '1px solid rgba(148, 163, 184, 0.1)', padding: '2rem 0', display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', justifyContent: 'space-between' }} className="footer-bottom">
           <style>{`@media (min-width: 768px) { .footer-bottom { flex-direction: row !important; } }`}</style>
-          
+
           <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', margin: 0 }}>
             AryChitra &copy; {new Date().getFullYear()} All Rights Reserved.
           </p>
