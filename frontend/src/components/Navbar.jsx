@@ -77,7 +77,7 @@ const Navbar = () => {
             <img 
               src="/arychitralogo.png" 
               alt="AryChitra Logo" 
-              style={{ height: '40px', objectFit: 'contain', transform: 'scale(2.2)', transformOrigin: 'left center' }} 
+              style={{ height: '40px', objectFit: 'contain', transform: 'scale(2.2)', transformOrigin: 'left center', marginTop: '12px' }} 
             />
           </Link>
 
