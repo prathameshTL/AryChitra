@@ -35,7 +35,7 @@ const projects = [
     name: 'EduCore ERP System',
     category: 'Web',
     description: 'Comprehensive, cloud-based management system streamlining operations for a network of educational institutions, covering admissions, academics, and HR.',
-    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
     color: '#10B981',
     tags: ['MERN Stack', 'AWS', 'Redux'],
   },
