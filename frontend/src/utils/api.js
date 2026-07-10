@@ -43,3 +43,10 @@ export const getTestimonials = () => request('/testimonials');
 export const createTestimonial = (payload) => request('/testimonials', { method: 'POST', body: JSON.stringify(payload) });
 export const updateTestimonial = (id, payload) => request(`/testimonials/${id}`, { method: 'PUT', body: JSON.stringify(payload) });
 export const deleteTestimonial = (id) => request(`/testimonials/${id}`, { method: 'DELETE' });
+
+// Blogs
+export const getBlogs = () => request('/blogs');
+export const createBlog = (payload) => request('/blogs', { method: 'POST', body: JSON.stringify(payload) });
+export const updateBlog = (id, payload) => request(`/blogs/${id}`, { method: 'PUT', body: JSON.stringify(payload) });
+export const deleteBlog = (id) => request(`/blogs/${id}`, { method: 'DELETE' });
+

@@ -5,6 +5,7 @@ import BannerManager from '../components/admin/BannerManager';
 import ServicesManager from '../components/admin/ServicesManager';
 import ProjectsManager from '../components/admin/ProjectsManager';
 import TestimonialsManager from '../components/admin/TestimonialsManager';
+import BlogManager from '../components/admin/BlogManager';
 
 function AdminDashboardPage() {
   const [activeTab, setActiveTab] = useState('banner');
@@ -66,6 +67,7 @@ function AdminDashboardPage() {
     { key: 'services', label: 'Services' },
     { key: 'projects', label: 'Projects' },
     { key: 'testimonials', label: 'Testimonials' },
+    { key: 'blogs', label: 'Blogs' },
     { key: 'orders', label: `Orders (${orders.length})` },
     { key: 'messages', label: `Messages (${messages.length})` },
   ];
@@ -96,6 +98,7 @@ function AdminDashboardPage() {
         {activeTab === 'services' && <ServicesManager />}
         {activeTab === 'projects' && <ProjectsManager />}
         {activeTab === 'testimonials' && <TestimonialsManager />}
+        {activeTab === 'blogs' && <BlogManager />}
 
         {activeTab === 'orders' && (
           <div>
