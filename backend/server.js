@@ -11,6 +11,8 @@ const serviceRoutes = require('./routes/serviceRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const testimonialRoutes = require('./routes/testimonialRoutes');
 const blogRoutes = require('./routes/blogRoutes');
+const teamRoutes = require('./routes/teamRoutes');
+const pricingRoutes = require('./routes/pricingRoutes');
 
 const app = express();
   
@@ -35,6 +37,8 @@ app.use('/api/services', serviceRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/testimonials', testimonialRoutes);
 app.use('/api/blogs', blogRoutes);
+app.use('/api/team', teamRoutes);
+app.use('/api/pricing', pricingRoutes);
 
 // Base route for testing
 app.get('/', (req, res) => {

@@ -6,6 +6,8 @@ import ServicesManager from '../components/admin/ServicesManager';
 import ProjectsManager from '../components/admin/ProjectsManager';
 import TestimonialsManager from '../components/admin/TestimonialsManager';
 import BlogManager from '../components/admin/BlogManager';
+import TeamManager from '../components/admin/TeamManager';
+import PricingManager from '../components/admin/PricingManager';
 
 function AdminDashboardPage() {
   const [activeTab, setActiveTab] = useState('banner');
@@ -68,6 +70,8 @@ function AdminDashboardPage() {
     { key: 'projects', label: 'Projects' },
     { key: 'testimonials', label: 'Testimonials' },
     { key: 'blogs', label: 'Blogs' },
+    { key: 'team', label: 'Team' },
+    { key: 'pricing', label: 'Pricing' },
     { key: 'orders', label: `Orders (${orders.length})` },
     { key: 'messages', label: `Messages (${messages.length})` },
   ];
@@ -99,6 +103,8 @@ function AdminDashboardPage() {
         {activeTab === 'projects' && <ProjectsManager />}
         {activeTab === 'testimonials' && <TestimonialsManager />}
         {activeTab === 'blogs' && <BlogManager />}
+        {activeTab === 'team' && <TeamManager />}
+        {activeTab === 'pricing' && <PricingManager />}
 
         {activeTab === 'orders' && (
           <div>

@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Github, Twitter, Linkedin } from 'lucide-react';
-
-const members = [
-  { name: 'Alex Johnson', role: 'Lead Engineer', image: 'https://i.pravatar.cc/300?img=11' },
-  { name: 'Sarah Lee', role: 'Product Designer', image: 'https://i.pravatar.cc/300?img=5' },
-  { name: 'Michael Chen', role: 'Cloud Architect', image: 'https://i.pravatar.cc/300?img=12' },
-  { name: 'Emily Davis', role: 'AI Specialist', image: 'https://i.pravatar.cc/300?img=9' },
-];
+import { getTeam } from '../utils/api';
 
 const TeamSection = () => {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const [members, setMembers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getTeam()
+      .then(setMembers)
+      .catch(err => console.error("Failed to fetch team:", err))
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
     <section id="team" className="section" style={{ background: 'var(--bg-secondary)' }}>
@@ -84,27 +87,39 @@ const TeamSection = () => {
 
               {/* Social Icons */}
               <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-                {[Github, Twitter, Linkedin].map((Icon, i) => (
+                {member.github && (
                   <a
-                    key={i}
-                    href="#"
-                    style={{
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: '50%',
-                      background: 'rgba(148, 163, 184, 0.1)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: 'var(--text-secondary)',
-                      transition: 'all 0.3s',
-                    }}
+                    href={member.github}
+                    target="_blank" rel="noopener noreferrer"
+                    style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(148, 163, 184, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)', transition: 'all 0.3s' }}
                     onMouseOver={(e) => { e.currentTarget.style.background = 'var(--gradient-primary)'; e.currentTarget.style.color = '#fff'; }}
                     onMouseOut={(e) => { e.currentTarget.style.background = 'rgba(148, 163, 184, 0.1)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
                   >
-                    <Icon size={16} />
+                    <Github size={16} />
                   </a>
-                ))}
+                )}
+                {member.twitter && (
+                  <a
+                    href={member.twitter}
+                    target="_blank" rel="noopener noreferrer"
+                    style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(148, 163, 184, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)', transition: 'all 0.3s' }}
+                    onMouseOver={(e) => { e.currentTarget.style.background = 'var(--gradient-primary)'; e.currentTarget.style.color = '#fff'; }}
+                    onMouseOut={(e) => { e.currentTarget.style.background = 'rgba(148, 163, 184, 0.1)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
+                  >
+                    <Twitter size={16} />
+                  </a>
+                )}
+                {member.linkedin && (
+                  <a
+                    href={member.linkedin}
+                    target="_blank" rel="noopener noreferrer"
+                    style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(148, 163, 184, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)', transition: 'all 0.3s' }}
+                    onMouseOver={(e) => { e.currentTarget.style.background = 'var(--gradient-primary)'; e.currentTarget.style.color = '#fff'; }}
+                    onMouseOut={(e) => { e.currentTarget.style.background = 'rgba(148, 163, 184, 0.1)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
+                  >
+                    <Linkedin size={16} />
+                  </a>
+                )}
               </div>
             </motion.div>
           ))}
