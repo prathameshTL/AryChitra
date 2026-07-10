@@ -52,3 +52,14 @@ export const createBlog = (payload) => request('/blogs', { method: 'POST', body:
 export const updateBlog = (id, payload) => request(`/blogs/${id}`, { method: 'PUT', body: JSON.stringify(payload) });
 export const deleteBlog = (id) => request(`/blogs/${id}`, { method: 'DELETE' });
 
+// Team
+export const getTeam = () => request('/team');
+export const createTeamMember = (payload) => request('/team', { method: 'POST', body: JSON.stringify(payload) });
+export const updateTeamMember = (id, payload) => request(`/team/${id}`, { method: 'PUT', body: JSON.stringify(payload) });
+export const deleteTeamMember = (id) => request(`/team/${id}`, { method: 'DELETE' });
+
+// Pricing
+export const getPricing = () => request('/pricing');
+export const createPricingPlan = (payload) => request('/pricing', { method: 'POST', body: JSON.stringify(payload) });
+export const updatePricingPlan = (id, payload) => request(`/pricing/${id}`, { method: 'PUT', body: JSON.stringify(payload) });
+export const deletePricingPlan = (id) => request(`/pricing/${id}`, { method: 'DELETE' });

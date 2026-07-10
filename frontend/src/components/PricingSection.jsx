@@ -1,58 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { getPricing } from '../utils/api';
 
-const pricingTiers = [
-  {
-    name: 'Starter',
-    description: 'Perfect for small businesses and startups looking to establish an online presence.',
-    price: '₹25,000',
-    duration: 'starting at',
-    highlighted: false,
-    color: '#0ea5e9', // Light Blue
-    features: [
-      'Responsive Website (up to 5 pages)',
-      'Basic SEO Setup',
-      'Contact Form Integration',
-      'Mobile Friendly Design',
-      '1 Month Free Support'
-    ],
-  },
-  {
-    name: 'Professional',
-    description: 'Ideal for growing businesses needing custom features and advanced integrations.',
-    price: '₹75,000',
-    duration: 'starting at',
-    highlighted: true,
-    color: '#8b5cf6', // Purple
-    features: [
-      'Custom Web Application / E-commerce',
-      'Advanced UI/UX Design',
-      'Payment Gateway Integration',
-      'Admin Dashboard',
-      'Advanced SEO & Analytics',
-      '3 Months Free Support'
-    ],
-  },
-  {
-    name: 'Enterprise',
-    description: 'For large scale organizations requiring robust architecture and scalable solutions.',
-    price: 'Custom',
-    duration: 'quote',
-    highlighted: false,
-    color: '#ec4899', // Pink
-    features: [
-      'Full-Stack Custom Architecture',
-      'Mobile App (iOS & Android)',
-      'Cloud Infrastructure Setup',
-      'AI/ML Integrations',
-      'Dedicated Team',
-      '24/7 Priority Support'
-    ],
-  }
-];
 
 const PricingCard = ({ tier, index }) => {
   return (
@@ -138,6 +90,15 @@ const PricingCard = ({ tier, index }) => {
 
 const PricingSection = () => {
   const { ref, inView } = useInView({ threshold: 0.05, triggerOnce: true });
+  const [pricingTiers, setPricingTiers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getPricing()
+      .then(setPricingTiers)
+      .catch(err => console.error("Failed to fetch pricing:", err))
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
     <section id="pricing" className="section" style={{ position: 'relative', overflow: 'hidden', background: 'var(--bg-primary)', paddingTop: '6rem', paddingBottom: '6rem' }}>
