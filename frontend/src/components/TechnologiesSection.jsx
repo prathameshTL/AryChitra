@@ -3,28 +3,26 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const techs = [
-  { name: 'React', icon: '⚛️' },
-  { name: 'Node.js', icon: '🟢' },
-  { name: 'Python', icon: '🐍' },
-  { name: 'AWS', icon: '☁️' },
-  { name: 'Docker', icon: '🐳' },
-  { name: 'MongoDB', icon: '🍃' },
-  { name: 'TypeScript', icon: '📘' },
-  { name: 'Figma', icon: '🎨' },
-  { name: 'Next.js', icon: '▲' },
-  { name: 'Tailwind', icon: '🌊' },
+  { name: 'React', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
+  { name: 'Node.js', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg' },
+  { name: 'Python', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg' },
+  { name: 'AWS', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg' },
+  { name: 'Docker', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg' },
+  { name: 'MongoDB', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg' },
+  { name: 'TypeScript', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg' },
+  { name: 'Figma', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg' },
+  { name: 'Next.js', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg' },
+  { name: 'Tailwind', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg' },
 ];
 
 const TechnologiesSection = () => {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   
-  // Double arrays for seamless marquee
+  // Double array for seamless marquee
   const row1 = [...techs, ...techs];
-  const row2 = [...techs].reverse();
-  const row2Duplicated = [...row2, ...row2];
 
   return (
-    <section id="technologies" className="section" style={{ background: 'var(--bg-secondary)', overflow: 'hidden' }}>
+    <section id="technologies" className="section" style={{ background: 'transparent', overflow: 'hidden' }}>
       <div className="container" ref={ref} style={{ marginBottom: '3rem', textAlign: 'center' }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -48,49 +46,18 @@ const TechnologiesSection = () => {
                 alignItems: 'center',
                 gap: '0.75rem',
                 padding: '1rem 2.5rem',
-                background: 'var(--glass-bg)',
-                border: '1px solid rgba(148, 163, 184, 0.1)',
+                background: 'transparent',
+                border: '1px solid transparent',
                 borderRadius: '50px',
                 color: 'var(--text-primary)',
                 fontWeight: 600,
                 fontSize: '1.1rem',
                 transition: 'all 0.3s',
-                backdropFilter: 'blur(8px)',
               }}
-              onMouseOver={(e) => { e.currentTarget.style.borderColor = 'var(--accent-purple)'; e.currentTarget.style.boxShadow = '0 0 20px rgba(108, 99, 255, 0.2)'; }}
-              onMouseOut={(e) => { e.currentTarget.style.borderColor = 'rgba(148, 163, 184, 0.1)'; e.currentTarget.style.boxShadow = 'none'; }}
+              onMouseOver={(e) => { e.currentTarget.style.borderColor = 'var(--accent-purple)'; e.currentTarget.style.background = 'var(--glass-bg)'; e.currentTarget.style.boxShadow = '0 0 20px rgba(108, 99, 255, 0.1)'; }}
+              onMouseOut={(e) => { e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.background = 'transparent'; e.currentTarget.style.boxShadow = 'none'; }}
             >
-              <span style={{ fontSize: '1.5rem' }}>{tech.icon}</span>
-              {tech.name}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Row 2 (Right to Left) */}
-      <div className="marquee-container">
-        <div className="marquee-content reverse cursor-hover-target">
-          {row2Duplicated.map((tech, i) => (
-            <div
-              key={`${tech.name}-r2-${i}`}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                padding: '1rem 2.5rem',
-                background: 'var(--glass-bg)',
-                border: '1px solid rgba(148, 163, 184, 0.1)',
-                borderRadius: '50px',
-                color: 'var(--text-primary)',
-                fontWeight: 600,
-                fontSize: '1.1rem',
-                transition: 'all 0.3s',
-                backdropFilter: 'blur(8px)',
-              }}
-              onMouseOver={(e) => { e.currentTarget.style.borderColor = 'var(--accent-blue)'; e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 217, 255, 0.2)'; }}
-              onMouseOut={(e) => { e.currentTarget.style.borderColor = 'rgba(148, 163, 184, 0.1)'; e.currentTarget.style.boxShadow = 'none'; }}
-            >
-              <span style={{ fontSize: '1.5rem' }}>{tech.icon}</span>
+              <img src={tech.logo} alt={tech.name} style={{ width: '28px', height: '28px', objectFit: 'contain', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }} />
               {tech.name}
             </div>
           ))}

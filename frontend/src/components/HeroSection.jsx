@@ -207,7 +207,7 @@ const HeroSection = () => {
             {titleLine1}{' '}
             <span
               style={{
-                background: 'linear-gradient(135deg, #6C63FF, #00D9FF, #A78BFA)',
+                background: 'linear-gradient(135deg, var(--accent-pink), var(--accent-purple), var(--accent-violet))',
                 backgroundSize: '200% 200%',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',

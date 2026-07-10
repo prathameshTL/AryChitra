@@ -15,15 +15,15 @@
   --text-secondary: #94A3B8;
   --text-muted: #64748B;
 
-  --accent-blue: #00D9FF;
-  --accent-purple: #6C63FF;
-  --accent-violet: #A78BFA;
-  --accent-pink: #EC4899;
+  --accent-blue: #EC4899;
+  --accent-purple: #9333EA;
+  --accent-violet: #A855F7;
+  --accent-pink: #F43F5E;
   --accent-green: #10B981;
 
-  --gradient-primary: linear-gradient(135deg, #6C63FF 0%, #00D9FF 100%);
-  --gradient-secondary: linear-gradient(135deg, #A78BFA 0%, #6C63FF 50%, #00D9FF 100%);
-  --gradient-glow: linear-gradient(135deg, #6C63FF 0%, #A78BFA 50%, #00D9FF 100%);
+  --gradient-primary: linear-gradient(135deg, #EC4899 0%, #9333EA 100%);
+  --gradient-secondary: linear-gradient(135deg, #9333EA 0%, #EC4899 50%, #A855F7 100%);
+  --gradient-glow: linear-gradient(135deg, #EC4899 0%, #A855F7 50%, #9333EA 100%);
 
   --glass-bg: rgba(17, 22, 51, 0.6);
   --glass-border: rgba(108, 99, 255, 0.15);
@@ -60,15 +60,15 @@
   --text-secondary: #4A5068;
   --text-muted: #7A8098;
 
-  --accent-blue: #00B8D9;
-  --accent-purple: #6C63FF;
-  --accent-violet: #8B5CF6;
-  --accent-pink: #EC4899;
+  --accent-blue: #EC4899;
+  --accent-purple: #9333EA;
+  --accent-violet: #A855F7;
+  --accent-pink: #F43F5E;
   --accent-green: #10B981;
 
-  --gradient-primary: linear-gradient(135deg, #6C63FF 0%, #00B8D9 100%);
-  --gradient-secondary: linear-gradient(135deg, #8B5CF6 0%, #6C63FF 50%, #00B8D9 100%);
-  --gradient-glow: linear-gradient(135deg, #6C63FF 0%, #8B5CF6 50%, #00B8D9 100%);
+  --gradient-primary: linear-gradient(135deg, #EC4899 0%, #9333EA 100%);
+  --gradient-secondary: linear-gradient(135deg, #9333EA 0%, #EC4899 50%, #A855F7 100%);
+  --gradient-glow: linear-gradient(135deg, #EC4899 0%, #A855F7 50%, #9333EA 100%);
 
   --glass-bg: rgba(255, 255, 255, 0.65);
   --glass-border: rgba(108, 99, 255, 0.12);
@@ -157,19 +157,29 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: relative;
 }
 
-/* --- Text Gradient --- */
+/* --- Text Gradient Animation --- */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .text-gradient {
   background: var(--gradient-primary);
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradient-shift 4s ease infinite;
 }
 
 .text-gradient-secondary {
   background: var(--gradient-secondary);
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradient-shift 4s ease infinite;
 }
 
 /* --- Section Headers --- */

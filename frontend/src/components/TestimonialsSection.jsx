@@ -93,8 +93,9 @@ const TestimonialsSection = () => {
                   style={{
                     padding: '3rem',
                     textAlign: 'center',
-                    background: 'var(--bg-card)',
-                    border: '1px solid rgba(108, 99, 255, 0.2)',
+                    background: 'var(--bg-secondary)',
+                    boxShadow: 'var(--shadow-glow)',
+                    border: '1px solid rgba(108, 99, 255, 0.3)',
                   }}
                 >
                   <Quote size={40} color="var(--accent-purple)" style={{ margin: '0 auto 1.5rem', opacity: 0.5 }} />
