@@ -127,10 +127,10 @@ const HeroSection = () => {
       style={{
         minHeight: '100vh',
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         position: 'relative',
         overflow: 'hidden',
-        paddingTop: 'var(--nav-height)',
+        paddingTop: 'calc(var(--nav-height) + 2rem)',
       }}
     >
       {/* 3D Canvas Background */}

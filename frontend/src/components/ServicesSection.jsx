@@ -185,7 +185,7 @@ const ServicesSection = () => {
     <section
       id="services"
       className="section"
-      style={{ position: 'relative', overflow: 'hidden', background: 'var(--bg-secondary)' }}
+      style={{ position: 'relative', overflow: 'hidden', background: 'var(--bg-secondary)', paddingTop: '3rem' }}
     >
       {/* Background Orbs */}
       <div className="glow-orb glow-orb-purple" style={{ width: '500px', height: '500px', top: '-10%', left: '-10%' }} />

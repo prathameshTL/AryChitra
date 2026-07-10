@@ -82,6 +82,8 @@ const TestimonialsSection = () => {
             modules={[EffectCards, Pagination, Autoplay]}
             pagination={{ clickable: true }}
             autoplay={{ delay: 5000, disableOnInteraction: false }}
+            slideToClickedSlide={true}
+            speed={800}
             style={{ paddingBottom: '3rem' }}
           >
             {testimonials.map((test) => (
