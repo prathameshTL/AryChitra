@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import CtaBanner from '../components/CtaBanner';
@@ -61,17 +62,56 @@ const AboutPage = () => {
         canonicalUrl="https://arychitra.com/about"
       />
       {/* Hero Banner */}
-      <section style={{ padding: '8rem 0 4rem', background: 'var(--bg-tertiary)', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ minHeight: '100vh', display: 'flex', alignItems: 'flex-start', position: 'relative', overflow: 'hidden', paddingTop: 'calc(var(--nav-height) + 2rem)' }}>
         <div className="glow-orb glow-orb-purple" style={{ width: '400px', height: '400px', top: '-10%', right: '-10%' }} />
-        <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <h1 style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', marginBottom: '1.5rem', letterSpacing: '-1px' }}>
-              About <span className="text-gradient">AryChitra</span>
-            </h1>
-            <p style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto' }}>
-              We are a collective of digital craftsmen, engineers, and visionaries dedicated to building the technology of tomorrow, today.
-            </p>
-          </motion.div>
+        <div className="container" style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '4rem', alignItems: 'center' }} className="about-hero-grid">
+            <style>{`@media (min-width: 992px) { .about-hero-grid { grid-template-columns: 1fr 1fr !important; } }`}</style>
+            
+            {/* Left Content */}
+            <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} style={{ marginBottom: '1rem' }}>
+                <span className="section-badge">
+                  🚀 Empowering Digital Transformation
+                </span>
+              </motion.div>
+              <h1 style={{ fontSize: 'clamp(3.5rem, 6vw, 5rem)', marginBottom: '1.5rem', letterSpacing: '-1px', lineHeight: 1.1 }}>
+                About <br/><span className="text-gradient">AryChitra</span>
+              </h1>
+              <p style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '2.5rem' }}>
+                We are a collective of digital craftsmen, engineers, and visionaries dedicated to building the technology of tomorrow, today.
+              </p>
+              
+              {/* CTAs matching Home page */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}
+              >
+                <Link to="/contact" className="btn btn-primary" style={{ textDecoration: 'none' }}>
+                  Work With Us
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </Link>
+                <Link to="/portfolio" className="btn btn-secondary" style={{ textDecoration: 'none' }}>
+                  Our Projects
+                </Link>
+              </motion.div>
+            </motion.div>
+
+            {/* Right Image */}
+            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.2 }}>
+              <div style={{ position: 'relative' }}>
+                <img 
+                  src="/WhatsApp Image 2026-07-10 at 2.35.16 PM.jpeg" 
+                  alt="AryChitra Team" 
+                  style={{ width: '100%', height: 'auto', borderRadius: '12px', display: 'block', objectFit: 'cover', boxShadow: 'var(--shadow-lg)' }}
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
