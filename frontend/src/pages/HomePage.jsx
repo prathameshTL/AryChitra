@@ -15,7 +15,7 @@ import { Target, Zap, Shield, HeartHandshake, ArrowRight } from 'lucide-react';
 const AboutPreview = () => {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   return (
-    <section className="section" style={{ background: 'var(--bg-secondary)' }} ref={ref}>
+    <section className="section" style={{ background: 'var(--bg-secondary)', paddingBottom: '3rem' }} ref={ref}>
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
