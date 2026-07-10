@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Service = require('./models/Service');
 const Project = require('./models/Project');
 const Banner = require('./models/Banner');
+const Blog = require('./models/Blog');
 require('dotenv').config();
 
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/it-agency';
@@ -140,6 +141,29 @@ const defaultProjects = [
   },
 ];
 
+const defaultBlogs = [
+  {
+    title: 'The Future of Serverless Architecture in Enterprise Software',
+    excerpt: 'Explore how migrating to serverless architectures can dramatically reduce costs while improving scalability for high-traffic enterprise platforms.',
+    content: '<p>Serverless computing is rapidly changing how we think about cloud infrastructure...</p>',
+    category: 'Engineering',
+    date: 'Oct 12, 2026',
+    readTime: '6 min read',
+    image: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=800&q=80',
+    author: 'AryChitra Engineering'
+  },
+  {
+    title: 'Designing for the Dark Mode: The Glassmorphism Trend',
+    excerpt: 'An in-depth look at how UI/UX trends like glassmorphism combined with deep dark mode palettes improve user retention and reduce eye strain.',
+    content: '<p>Dark mode is no longer just a feature, it is an expectation. Paired with glassmorphism...</p>',
+    category: 'Design',
+    date: 'Oct 05, 2026',
+    readTime: '5 min read',
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80',
+    author: 'AryChitra Design'
+  }
+];
+
 mongoose.connect(MONGO_URI)
   .then(async () => {
     console.log('MongoDB connected for content seeding...');
@@ -166,6 +190,14 @@ mongoose.connect(MONGO_URI)
       console.log('Seeded default banner.');
     } else {
       console.log('Banner already exists. Skipping.');
+    }
+
+    const blogCount = await Blog.countDocuments();
+    if (blogCount === 0) {
+      await Blog.insertMany(defaultBlogs);
+      console.log(`Seeded ${defaultBlogs.length} blogs.`);
+    } else {
+      console.log('Blogs already exist. Skipping.');
     }
 
     process.exit(0);

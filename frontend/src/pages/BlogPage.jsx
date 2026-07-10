@@ -1,70 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import CtaBanner from '../components/CtaBanner';
 import SEO from '../components/SEO';
-
-const blogPosts = [
-  {
-    id: 1,
-    title: 'The Future of Serverless Architecture in Enterprise Software',
-    excerpt: 'Explore how migrating to serverless architectures can dramatically reduce costs while improving scalability for high-traffic enterprise platforms.',
-    category: 'Engineering',
-    date: 'Oct 12, 2026',
-    readTime: '6 min read',
-    image: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 2,
-    title: 'Designing for the Dark Mode: The Glassmorphism Trend',
-    excerpt: 'An in-depth look at how UI/UX trends like glassmorphism combined with deep dark mode palettes improve user retention and reduce eye strain.',
-    category: 'Design',
-    date: 'Oct 05, 2026',
-    readTime: '5 min read',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 3,
-    title: 'Integrating AI/ML into Legacy Systems: A Practical Guide',
-    excerpt: 'Learn the step-by-step process of retrofitting legacy applications with modern machine learning algorithms to unlock predictive analytics.',
-    category: 'AI & Data',
-    date: 'Sep 28, 2026',
-    readTime: '8 min read',
-    image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 4,
-    title: 'React 19 vs Next.js 15: Choosing the Right Framework',
-    excerpt: 'A comprehensive technical comparison of the latest features in the React ecosystem and how to choose the right foundation for your next project.',
-    category: 'Engineering',
-    date: 'Sep 15, 2026',
-    readTime: '7 min read',
-    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 5,
-    title: 'Mastering B2B Technical SEO for Software Agencies',
-    excerpt: 'Stop relying solely on paid ads. Discover the technical SEO strategies that actually drive organic, high-intent traffic in the B2B tech space.',
-    category: 'Marketing',
-    date: 'Sep 02, 2026',
-    readTime: '10 min read',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 6,
-    title: 'Building Resilient Microservices with Go and gRPC',
-    excerpt: 'A technical deep dive into replacing slow REST APIs with highly performant, type-safe gRPC microservices using Golang.',
-    category: 'Engineering',
-    date: 'Aug 24, 2026',
-    readTime: '12 min read',
-    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80',
-  }
-];
-
-const categories = ['All', 'Engineering', 'Design', 'AI & Data', 'Marketing'];
+import { getBlogs } from '../utils/api';
 
 const BlogPage = () => {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [blogPosts, setBlogPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getBlogs()
+      .then(data => {
+        if (data) setBlogPosts(data);
+      })
+      .catch(err => console.error("Failed to load blogs:", err))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const categories = ['All', ...new Set(blogPosts.map(post => post.category))];
 
   const filteredPosts = activeCategory === 'All'
     ? blogPosts
@@ -121,7 +76,7 @@ const BlogPage = () => {
             <AnimatePresence mode="popLayout">
               {filteredPosts.map((post) => (
                 <motion.div
-                  key={post.id}
+                  key={post._id || post.id || Math.random()}
                   layout
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -166,6 +121,10 @@ const BlogPage = () => {
                   </div>
                 </motion.div>
               ))}
+              {loading && <div style={{ textAlign: 'center', gridColumn: '1 / -1' }}>Loading blogs...</div>}
+              {!loading && filteredPosts.length === 0 && (
+                <div style={{ textAlign: 'center', gridColumn: '1 / -1', color: 'var(--text-secondary)' }}>No blogs found in this category.</div>
+              )}
             </AnimatePresence>
           </motion.div>
 

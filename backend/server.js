@@ -10,6 +10,7 @@ const bannerRoutes = require('./routes/bannerRoutes');
 const serviceRoutes = require('./routes/serviceRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const testimonialRoutes = require('./routes/testimonialRoutes');
+const blogRoutes = require('./routes/blogRoutes');
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use('/api/banner', bannerRoutes);
 app.use('/api/services', serviceRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/testimonials', testimonialRoutes);
+app.use('/api/blogs', blogRoutes);
 
 // Base route for testing
 app.get('/', (req, res) => {
