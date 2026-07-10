@@ -42,7 +42,7 @@ const AiMlPage = () => {
           </div>
 
           <div style={{ textAlign: 'center' }}>
-            <Link to="/contact" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Link to="/order" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
               Explore AI Solutions <ArrowRight size={20} />
             </Link>
           </div>

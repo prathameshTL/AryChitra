@@ -59,12 +59,23 @@ const filters = ['All', 'Web', 'App', 'Design'];
 /* ─── Portfolio Section ─── */
 const PortfolioSection = () => {
   const [activeFilter, setActiveFilter] = useState('All');
+  const [apiProjects, setApiProjects] = useState([]);
   const { ref, inView } = useInView({ threshold: 0.05, triggerOnce: true });
+
+  React.useEffect(() => {
+    import('../utils/api').then(({ getProjects }) => {
+      getProjects().then(data => {
+        if (data && data.length > 0) setApiProjects(data);
+      }).catch(err => console.error("Failed to load projects", err));
+    });
+  }, []);
+
+  const displayProjects = apiProjects.length > 0 ? apiProjects : projects;
 
   const filteredProjects =
     activeFilter === 'All'
-      ? projects
-      : projects.filter((p) => p.category === activeFilter);
+      ? displayProjects
+      : displayProjects.filter((p) => p.category === activeFilter);
 
   return (
     <section
@@ -213,9 +224,9 @@ const PortfolioSection = () => {
                       width: '50px',
                       height: '4px',
                       borderRadius: '2px',
-                      background: project.color,
+                      background: project.color || '#6C63FF',
                       marginBottom: '1.5rem',
-                      boxShadow: `0 0 15px ${project.color}50`,
+                      boxShadow: `0 0 15px ${project.color || '#6C63FF'}50`,
                     }}
                   />
 
@@ -224,7 +235,7 @@ const PortfolioSection = () => {
                     style={{
                       fontSize: '0.8rem',
                       fontWeight: 600,
-                      color: project.color,
+                      color: project.color || '#6C63FF',
                       textTransform: 'uppercase',
                       letterSpacing: '1px',
                       marginBottom: '0.5rem',
@@ -260,7 +271,7 @@ const PortfolioSection = () => {
 
                   {/* Tags */}
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                    {project.tags.map((tag) => (
+                    {(project.tags || []).map((tag) => (
                       <span
                         key={tag}
                         style={{

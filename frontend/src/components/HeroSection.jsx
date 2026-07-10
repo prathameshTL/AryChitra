@@ -121,6 +121,25 @@ const itemVariants = {
 };
 
 const HeroSection = () => {
+  const [banner, setBanner] = React.useState(null);
+
+  React.useEffect(() => {
+    import('../utils/api').then(({ getBanner }) => {
+      getBanner().then(data => {
+        if (data) setBanner(data);
+      }).catch(err => console.error("Failed to load banner", err));
+    });
+  }, []);
+
+  const tag = banner?.tag || '🚀 Crafting Digital Futures';
+  const titleLine1 = banner?.titleLine1 || 'We Build Digital';
+  const titleHighlight = banner?.titleHighlight || 'Experiences';
+  const subtitle = banner?.subtitle || 'AryChitra transforms bold ideas into stunning, scalable software solutions. From concept to deployment, we craft premium digital products that drive real business growth.';
+  const btn1Text = banner?.primaryBtnText || 'Start Your Project';
+  const btn1Link = banner?.primaryBtnLink || '/order';
+  const btn2Text = banner?.secondaryBtnText || 'View Our Work';
+  const btn2Link = banner?.secondaryBtnLink || '/portfolio';
+
   return (
     <section
       id="home"
@@ -170,7 +189,7 @@ const HeroSection = () => {
           {/* Badge */}
           <motion.div variants={itemVariants} style={{ marginBottom: '0.5rem' }}>
             <span className="section-badge">
-              🚀 Crafting Digital Futures
+              {tag}
             </span>
           </motion.div>
 
@@ -185,7 +204,7 @@ const HeroSection = () => {
               letterSpacing: '-2px',
             }}
           >
-            We Build Digital{' '}
+            {titleLine1}{' '}
             <span
               style={{
                 background: 'linear-gradient(135deg, #6C63FF, #00D9FF, #A78BFA)',
@@ -196,9 +215,8 @@ const HeroSection = () => {
                 animation: 'gradient-shift 4s ease infinite',
               }}
             >
-              Experiences
+              {titleHighlight}
             </span>{' '}
-            That Matter
           </motion.h1>
 
           {/* Subtitle */}
@@ -212,8 +230,7 @@ const HeroSection = () => {
               marginBottom: '2.5rem',
             }}
           >
-            AryChitra transforms bold ideas into stunning, scalable software solutions. 
-            From concept to deployment, we craft premium digital products that drive real business growth.
+            {subtitle}
           </motion.p>
 
           {/* CTAs */}
@@ -221,14 +238,14 @@ const HeroSection = () => {
             variants={itemVariants}
             style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}
           >
-            <Link to="/contact" className="btn btn-primary" style={{ textDecoration: 'none' }}>
-              Start Your Project
+            <Link to={btn1Link} className="btn btn-primary" style={{ textDecoration: 'none' }}>
+              {btn1Text}
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </Link>
-            <Link to="/portfolio" className="btn btn-secondary" style={{ textDecoration: 'none' }}>
-              View Our Work
+            <Link to={btn2Link} className="btn btn-secondary" style={{ textDecoration: 'none' }}>
+              {btn2Text}
             </Link>
           </motion.div>
         </motion.div>

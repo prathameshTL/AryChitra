@@ -97,8 +97,8 @@ const TiltCard = ({ service, index }) => {
             width: '60px',
             height: '60px',
             borderRadius: '16px',
-            background: `${service.color}15`,
-            border: `1px solid ${service.color}30`,
+            background: `${service.color || '#3b82f6'}15`,
+            border: `1px solid ${service.color || '#3b82f6'}30`,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -137,17 +137,17 @@ const TiltCard = ({ service, index }) => {
 
         {/* Tags */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-          {service.tags.map((tag) => (
+          {(service.tags || []).map((tag) => (
             <span
               key={tag}
               style={{
                 padding: '0.3rem 0.8rem',
                 fontSize: '0.75rem',
                 borderRadius: '50px',
-                background: `${service.color}10`,
-                color: service.color,
+                background: `${service.color || '#3b82f6'}10`,
+                color: service.color || '#3b82f6',
                 fontWeight: 500,
-                border: `1px solid ${service.color}20`,
+                border: `1px solid ${service.color || '#3b82f6'}20`,
               }}
             >
               {tag}
@@ -163,7 +163,7 @@ const TiltCard = ({ service, index }) => {
             left: 0,
             right: 0,
             height: '2px',
-            background: `linear-gradient(90deg, transparent, ${service.color}, transparent)`,
+            background: `linear-gradient(90deg, transparent, ${service.color || '#3b82f6'}, transparent)`,
             opacity: 0,
             transition: 'opacity 0.4s ease',
           }}
@@ -177,9 +177,19 @@ const TiltCard = ({ service, index }) => {
   );
 };
 
-/* ─── Services Section ─── */
 const ServicesSection = () => {
   const { ref, inView } = useInView({ threshold: 0.05, triggerOnce: true });
+  const [apiServices, setApiServices] = React.useState([]);
+
+  React.useEffect(() => {
+    import('../utils/api').then(({ getServices }) => {
+      getServices().then(data => {
+        if (data && data.length > 0) setApiServices(data);
+      }).catch(err => console.error("Failed to load services", err));
+    });
+  }, []);
+
+  const displayServices = apiServices.length > 0 ? apiServices : services;
 
   return (
     <section
@@ -219,8 +229,8 @@ const ServicesSection = () => {
             zIndex: 1,
           }}
         >
-          {services.map((service, index) => (
-            <TiltCard key={service.title} service={service} index={index} />
+          {displayServices.map((service, index) => (
+            <TiltCard key={service._id || service.title} service={service} index={index} />
           ))}
         </div>
       </div>

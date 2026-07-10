@@ -41,11 +41,11 @@ const UiUxPage = () => {
             </div>
           </div>
 
-          <div style={{ textAlign: 'center' }}>
-            <Link to="/contact" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-              Start a Design Project <ArrowRight size={20} />
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} style={{ textAlign: 'center' }}>
+            <Link to="/order" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+              Start Your Project <ArrowRight size={18} />
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>
