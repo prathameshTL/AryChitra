@@ -22,6 +22,8 @@ const navLinks = [
   },
   { name: 'Portfolio', href: '/portfolio' },
   { name: 'Blog', href: '/blog' },
+  { name: 'Pricing', href: '/pricing' },
+  { name: 'Team', href: '/team' },
   { name: 'Contact Us', href: '/contact' },
 ];
 

@@ -13,7 +13,7 @@ const testimonialRoutes = require('./routes/testimonialRoutes');
 const blogRoutes = require('./routes/blogRoutes');
 
 const app = express();
-
+  
 // Middleware
 app.use(cors());
 app.use(express.json());
