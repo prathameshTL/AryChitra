@@ -36,7 +36,7 @@ const CtaBanner = () => {
             </p>
             
             <Link
-              to="/contact"
+              to="/order"
               className="btn cursor-hover-target"
               style={{
                 background: '#fff',

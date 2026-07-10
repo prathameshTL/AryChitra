@@ -168,7 +168,7 @@ const Navbar = () => {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <ThemeToggle size={18} />
             <Link
-              to="/contact"
+              to="/order"
               className="btn btn-glow"
               style={{
                 padding: '0.5rem 1.2rem',
@@ -287,7 +287,7 @@ const Navbar = () => {
                 </div>
               ))}
               <Link
-                to="/contact"
+                to="/order"
                 className="btn btn-primary"
                 style={{ marginTop: '1.5rem', textAlign: 'center', textDecoration: 'none' }}
               >
