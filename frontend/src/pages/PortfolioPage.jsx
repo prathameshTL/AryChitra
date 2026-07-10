@@ -61,10 +61,21 @@ const filters = ['All', 'Web', 'App', 'UI-UX', 'Cloud'];
 
 const PortfolioPage = () => {
   const [activeFilter, setActiveFilter] = useState('All');
+  const [apiProjects, setApiProjects] = useState([]);
+
+  React.useEffect(() => {
+    import('../utils/api').then(({ getProjects }) => {
+      getProjects().then(data => {
+        if (data && data.length > 0) setApiProjects(data);
+      }).catch(err => console.error("Failed to load projects", err));
+    });
+  }, []);
+
+  const displayProjects = apiProjects.length > 0 ? apiProjects : projects;
 
   const filteredProjects = activeFilter === 'All' 
-    ? projects 
-    : projects.filter(p => p.category === activeFilter);
+    ? displayProjects 
+    : displayProjects.filter(p => p.category === activeFilter);
 
   return (
     <>
@@ -136,7 +147,7 @@ const PortfolioPage = () => {
                     <div className="project-image" style={{ width: '100%', height: '100%', background: `url(${project.image}) center/cover`, transition: 'transform 0.5s ease' }} />
                     <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10, 14, 39, 1), transparent)' }} />
                     
-                    <span style={{ position: 'absolute', top: '1rem', left: '1rem', padding: '0.4rem 1rem', background: project.color, color: '#fff', fontSize: '0.75rem', fontWeight: 600, borderRadius: '50px', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                    <span style={{ position: 'absolute', top: '1rem', left: '1rem', padding: '0.4rem 1rem', background: project.color || '#6C63FF', color: '#fff', fontSize: '0.75rem', fontWeight: 600, borderRadius: '50px', textTransform: 'uppercase', letterSpacing: '1px' }}>
                       {project.category}
                     </span>
                   </div>
@@ -147,7 +158,7 @@ const PortfolioPage = () => {
                     <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1.5rem', flex: 1 }}>{project.description}</p>
                     
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '2rem' }}>
-                      {project.tags.map(tag => (
+                      {(project.tags || []).map(tag => (
                         <span key={tag} style={{ fontSize: '0.8rem', color: 'var(--text-muted)', background: 'rgba(255,255,255,0.05)', padding: '0.2rem 0.6rem', borderRadius: '4px' }}>{tag}</span>
                       ))}
                     </div>

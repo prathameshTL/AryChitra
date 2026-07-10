@@ -27,8 +27,8 @@ const CtaSection = () => {
             <p style={{ fontSize: '1.25rem', maxWidth: '600px', margin: '0 auto 3rem', color: 'rgba(255,255,255,0.9)', lineHeight: 1.6 }}>
               Let's build something incredible together. Get in touch with our team of experts today and start your digital journey.
             </p>
-            <Link to="/contact" className="btn" style={{ background: '#ffffff', color: 'var(--accent-primary)', fontSize: '1.1rem', padding: '1rem 2.5rem', display: 'inline-flex', alignItems: 'center', gap: '0.75rem', fontWeight: 600, border: 'none', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}>
-              Let's Talk <ArrowRight size={20} />
+            <Link to="/order" className="btn" style={{ background: '#ffffff', color: 'var(--accent-primary)', fontSize: '1.1rem', padding: '1rem 2.5rem', display: 'inline-flex', alignItems: 'center', gap: '0.75rem', fontWeight: 600, border: 'none', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}>
+              Start Your Project
             </Link>
           </div>
         </div>

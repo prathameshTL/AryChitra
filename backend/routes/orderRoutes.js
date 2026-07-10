@@ -39,7 +39,7 @@ setupTransporter();
 // Create a new website order
 router.post('/', async (req, res) => {
   try {
-    const { name, email, websiteType, budget, details } = req.body;
+    const { name, email, phone, websiteType, budget, details } = req.body;
 
     // Validate required fields
     if (!name || !email || !websiteType || !budget) {
@@ -49,6 +49,7 @@ router.post('/', async (req, res) => {
     const newOrder = new Order({
       name,
       email,
+      phone,
       websiteType,
       budget,
       details
@@ -62,8 +63,8 @@ router.post('/', async (req, res) => {
         from: `"${name}" <${email}>`,
         to: process.env.ADMIN_EMAIL || 'admin@aryachitr.com',
         subject: `New Project Order: ${websiteType}`,
-        text: `Name: ${name}\nEmail: ${email}\nWebsite Type: ${websiteType}\nBudget: ${budget}\n\nDetails:\n${details || 'No details provided'}`,
-        html: `<p><strong>New Order Received</strong></p><p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Website Type:</strong> ${websiteType}</p><p><strong>Budget:</strong> ${budget}</p><p><strong>Details:</strong><br/>${details || 'No details provided'}</p>`
+        text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nWebsite Type: ${websiteType}\nBudget: ${budget}\n\nDetails:\n${details || 'No details provided'}`,
+        html: `<p><strong>New Order Received</strong></p><p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Phone:</strong> ${phone || 'Not provided'}</p><p><strong>Website Type:</strong> ${websiteType}</p><p><strong>Budget:</strong> ${budget}</p><p><strong>Details:</strong><br/>${details || 'No details provided'}</p>`
       };
 
       const info = await transporter.sendMail(mailOptions);

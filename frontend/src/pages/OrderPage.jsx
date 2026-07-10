@@ -6,6 +6,7 @@ function OrderPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     company: '',
     service: 'web',
     budget: '',
@@ -26,6 +27,7 @@ function OrderPage() {
     const payload = {
       name: formData.name,
       email: formData.email,
+      phone: formData.phone,
       websiteType: formData.service,
       budget: formData.budget,
       details: formData.company ? `Company: ${formData.company}\n\n${formData.description}` : formData.description
@@ -43,7 +45,7 @@ function OrderPage() {
       }
 
       alert('Thank you for reaching out! Your project request has been received. We will get back to you shortly.');
-      setFormData({ name: '', email: '', company: '', service: 'web', budget: '', description: '' });
+      setFormData({ name: '', email: '', phone: '', company: '', service: 'web', budget: '', description: '' });
     } catch (err) {
       console.error(err);
       setError('An error occurred while submitting your request. Please try again later.');
@@ -81,9 +83,15 @@ function OrderPage() {
               </div>
             </div>
 
-            <div className="form-group" style={{ marginTop: '1.5rem' }}>
-              <label className="form-label" htmlFor="company">Company Name (Optional)</label>
-              <input type="text" id="company" name="company" className="form-control" value={formData.company} onChange={handleChange} placeholder="Your Company Ltd." />
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginTop: '1.5rem' }}>
+              <div className="form-group" style={{ marginBottom: 0 }}>
+                <label className="form-label" htmlFor="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" className="form-control" value={formData.phone} onChange={handleChange} placeholder="+1 234 567 890" />
+              </div>
+              <div className="form-group" style={{ marginBottom: 0 }}>
+                <label className="form-label" htmlFor="company">Company Name (Optional)</label>
+                <input type="text" id="company" name="company" className="form-control" value={formData.company} onChange={handleChange} placeholder="Your Company Ltd." />
+              </div>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginTop: '1.5rem' }}>
@@ -103,11 +111,11 @@ function OrderPage() {
                 <label className="form-label" htmlFor="budget">Estimated Budget</label>
                 <select id="budget" name="budget" className="form-control" value={formData.budget} onChange={handleChange}>
                   <option value="">Select Budget Range</option>
-                  <option value="<5k">Less than $5,000</option>
-                  <option value="5k-10k">$5,000 - $10,000</option>
-                  <option value="10k-25k">$10,000 - $25,000</option>
-                  <option value="25k-50k">$25,000 - $50,000</option>
-                  <option value=">50k">More than $50,000</option>
+                  <option value="<50k">Less than ₹50,000</option>
+                  <option value="50k-1L">₹50,000 - ₹1,00,000</option>
+                  <option value="1L-5L">₹1,00,000 - ₹5,00,000</option>
+                  <option value="5L-10L">₹5,00,000 - ₹10,00,000</option>
+                  <option value=">10L">More than ₹10,00,000</option>
                 </select>
               </div>
             </div>
