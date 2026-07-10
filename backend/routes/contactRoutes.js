@@ -39,7 +39,7 @@ setupTransporter();
 // Submit a contact message
 router.post('/', async (req, res) => {
   try {
-    const { name, email, phone, message } = req.body;
+    const { name, email, phone, subject, message } = req.body;
 
     if (!name || !email || !message) {
       return res.status(400).json({ error: 'Please provide name, email, and message.' });
@@ -49,6 +49,7 @@ router.post('/', async (req, res) => {
       name,
       email,
       phone,
+      subject,
       message
     });
 
@@ -59,9 +60,9 @@ router.post('/', async (req, res) => {
       const mailOptions = {
         from: `"${name}" <${email}>`,
         to: process.env.ADMIN_EMAIL || 'admin@aryachitr.com',
-        subject: 'New Contact Form Submission',
-        text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\n\nMessage:\n${message}`,
-        html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Phone:</strong> ${phone || 'Not provided'}</p><p><strong>Message:</strong><br/>${message}</p>`
+        subject: subject ? `Contact Form: ${subject}` : 'New Contact Form Submission',
+        text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nSubject: ${subject || 'Not provided'}\n\nMessage:\n${message}`,
+        html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Phone:</strong> ${phone || 'Not provided'}</p><p><strong>Subject:</strong> ${subject || 'Not provided'}</p><p><strong>Message:</strong><br/>${message}</p>`
       };
 
       const info = await transporter.sendMail(mailOptions);

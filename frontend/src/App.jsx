@@ -16,7 +16,11 @@ import PortfolioPage from './pages/PortfolioPage';
 import ContactPage from './pages/ContactPage';
 import WhyChooseUsPage from './pages/WhyChooseUsPage';
 import BlogPage from './pages/BlogPage';
+import BlogPostPage from './pages/BlogPostPage';
 import OrderPage from './pages/OrderPage';
+import ProjectDetailPage from './pages/ProjectDetailPage';
+import PricingPage from './pages/PricingPage';
+import TeamPage from './pages/TeamPage';
 
 // Admin Pages
 import AdminLoginPage from './pages/AdminLoginPage';
@@ -40,8 +44,12 @@ const AnimatedRoutes = () => {
         <Route path="/why-choose-us" element={<PageTransition><WhyChooseUsPage /></PageTransition>} />
         <Route path="/services" element={<PageTransition><ServicesPage /></PageTransition>} />
         <Route path="/portfolio" element={<PageTransition><PortfolioPage /></PageTransition>} />
+        <Route path="/portfolio/:id" element={<PageTransition><ProjectDetailPage /></PageTransition>} />
         <Route path="/blog" element={<PageTransition><BlogPage /></PageTransition>} />
+        <Route path="/blog/:id" element={<PageTransition><BlogPostPage /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
+        <Route path="/pricing" element={<PageTransition><PricingPage /></PageTransition>} />
+        <Route path="/team" element={<PageTransition><TeamPage /></PageTransition>} />
         
         {/* Preserved Routes */}
         <Route path="/services/ui-ux" element={<PageTransition><UiUxPage /></PageTransition>} />

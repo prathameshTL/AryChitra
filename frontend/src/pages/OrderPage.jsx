@@ -108,15 +108,15 @@ function OrderPage() {
                 </select>
               </div>
               <div className="form-group" style={{ marginBottom: 0 }}>
-                <label className="form-label" htmlFor="budget">Estimated Budget</label>
-                <select id="budget" name="budget" className="form-control" value={formData.budget} onChange={handleChange}>
-                  <option value="">Select Budget Range</option>
-                  <option value="<50k">Less than ₹50,000</option>
-                  <option value="50k-1L">₹50,000 - ₹1,00,000</option>
-                  <option value="1L-5L">₹1,00,000 - ₹5,00,000</option>
-                  <option value="5L-10L">₹5,00,000 - ₹10,00,000</option>
-                  <option value=">10L">More than ₹10,00,000</option>
-                </select>
+                  <label className="form-label" htmlFor="budget">Estimated Budget *</label>
+                  <select id="budget" name="budget" className="form-control" required value={formData.budget} onChange={handleChange}>
+                    <option value="">Select Budget Range</option>
+                    <option value="<50k">Less than ₹50,000</option>
+                    <option value="50k-1L">₹50,000 - ₹1,00,000</option>
+                    <option value="1L-5L">₹1,00,000 - ₹5,00,000</option>
+                    <option value="5L-10L">₹5,00,000 - ₹10,00,000</option>
+                    <option value=">10L">More than ₹10,00,000</option>
+                  </select>
               </div>
             </div>
 

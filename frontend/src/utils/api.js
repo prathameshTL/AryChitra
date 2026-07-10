@@ -34,6 +34,7 @@ export const deleteService = (id) => request(`/services/${id}`, { method: 'DELET
 
 // Projects
 export const getProjects = () => request('/projects');
+export const getProject = (id) => request(`/projects/${id}`);
 export const createProject = (payload) => request('/projects', { method: 'POST', body: JSON.stringify(payload) });
 export const updateProject = (id, payload) => request(`/projects/${id}`, { method: 'PUT', body: JSON.stringify(payload) });
 export const deleteProject = (id) => request(`/projects/${id}`, { method: 'DELETE' });
@@ -46,6 +47,7 @@ export const deleteTestimonial = (id) => request(`/testimonials/${id}`, { method
 
 // Blogs
 export const getBlogs = () => request('/blogs');
+export const getBlog = (id) => request(`/blogs/${id}`);
 export const createBlog = (payload) => request('/blogs', { method: 'POST', body: JSON.stringify(payload) });
 export const updateBlog = (id, payload) => request(`/blogs/${id}`, { method: 'PUT', body: JSON.stringify(payload) });
 export const deleteBlog = (id) => request(`/blogs/${id}`, { method: 'DELETE' });

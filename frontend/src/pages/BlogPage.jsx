@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import CtaBanner from '../components/CtaBanner';
 import SEO from '../components/SEO';
 import { getBlogs } from '../utils/api';
@@ -114,9 +115,9 @@ const BlogPage = () => {
                     </p>
 
                     <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
-                      <button className="read-more" style={{ background: 'transparent', border: 'none', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.95rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.3s' }}>
+                      <Link to={`/blog/${post._id || post.id}`} className="read-more" style={{ textDecoration: 'none', background: 'transparent', border: 'none', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.95rem', fontWeight: 600, cursor: 'pointer', transition: 'all 0.3s' }}>
                         Read Article <ArrowRight size={16} />
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </motion.div>
