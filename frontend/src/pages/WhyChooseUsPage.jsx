@@ -61,16 +61,40 @@ const WhyChooseUsPage = () => {
         canonicalUrl="https://arychitra.com/why-choose-us"
       />
       {/* Hero */}
-      <section style={{ padding: '8rem 0 4rem', background: 'var(--bg-tertiary)' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '1.5rem', letterSpacing: '-1px' }}>
-              Why Choose <span className="text-gradient">AryChitra</span>
-            </h1>
-            <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', maxWidth: '800px', margin: '0 auto', lineHeight: 1.8 }}>
-              In a sea of generic development agencies, AryChitra stands apart as a true technology partner. We combine deep engineering pedigree with stunning design sensibilities to deliver digital products that don't just function—they dominate their markets. We are the choice for businesses that refuse to compromise on quality.
-            </p>
-          </motion.div>
+      <section style={{ padding: '120px 0 60px', background: 'transparent' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '4rem', alignItems: 'center' }} className="hero-grid">
+            <style>{`@media (min-width: 992px) { .hero-grid { grid-template-columns: 1fr 1fr !important; } }`}</style>
+            
+            {/* Left Content */}
+            <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
+              <div className="section-badge">
+                🚀 THE ARYCHITRA ADVANTAGE
+              </div>
+              <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '1.5rem', letterSpacing: '-1px', lineHeight: 1.1 }}>
+                Why Choose <br/><span className="text-gradient">AryChitra</span>
+              </h1>
+              <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '2.5rem' }}>
+                In a sea of generic development agencies, AryChitra stands apart as a true technology partner. We combine deep engineering pedigree with stunning design sensibilities to deliver digital products that don't just function—they dominate their markets. We are the choice for businesses that refuse to compromise on quality.
+              </p>
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                 <button className="btn btn-primary" onClick={() => document.getElementById('comparison').scrollIntoView({ behavior: 'smooth' })}>
+                   Compare Us
+                 </button>
+              </div>
+            </motion.div>
+
+            {/* Right Image */}
+            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.2 }}>
+              <div style={{ position: 'relative' }}>
+                <img 
+                  src="/WhatsApp Image 2026-07-10 at 17.11.28.jpeg" 
+                  alt="AryChitra Team" 
+                  style={{ width: '100%', height: 'auto', borderRadius: '12px', display: 'block', objectFit: 'cover', boxShadow: 'var(--shadow-lg)' }}
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -98,7 +122,7 @@ const WhyChooseUsPage = () => {
       </section>
 
       {/* Comparison Table */}
-      <section className="section" style={{ background: 'var(--bg-secondary)' }}>
+      <section id="comparison" className="section" style={{ background: 'var(--bg-secondary)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
             <h2 className="section-title">AryChitra vs <span style={{ color: 'var(--text-muted)' }}>Traditional Agencies</span></h2>
