@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
-const orderSchema = new mongoose.Schema({
+const applicationSchema = new mongoose.Schema({
+  jobId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Job',
+    required: true,
+  },
   name: {
     type: String,
     required: true,
@@ -11,26 +16,19 @@ const orderSchema = new mongoose.Schema({
   },
   phone: {
     type: String,
+    required: true,
   },
-  websiteType: {
+  resumeUrl: {
     type: String,
     required: true,
   },
-  budget: {
+  coverLetter: {
     type: String,
-    required: true,
-  },
-  details: {
-    type: String,
-  },
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
   },
   status: {
     type: String,
-    enum: ['Pending', 'In Progress', 'Completed', 'Cancelled'],
-    default: 'Pending',
+    enum: ['Pending', 'Reviewed', 'Interviewing', 'Rejected', 'Hired'],
+    default: 'Pending'
   },
   createdAt: {
     type: Date,
@@ -38,4 +36,4 @@ const orderSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Order', orderSchema);
+module.exports = mongoose.model('Application', applicationSchema);

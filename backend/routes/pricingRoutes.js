@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Pricing = require('../models/Pricing');
-const authMiddleware = require('../middleware/authMiddleware');
+const { protect } = require('../middleware/authMiddleware');
 
 // Get all pricing plans
 router.get('/', async (req, res) => {
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 });
 
 // Create new pricing plan (Admin only)
-router.post('/', authMiddleware, async (req, res) => {
+router.post('/', protect, async (req, res) => {
   try {
     const newPricing = new Pricing(req.body);
     await newPricing.save();
@@ -25,7 +25,7 @@ router.post('/', authMiddleware, async (req, res) => {
 });
 
 // Update pricing plan (Admin only)
-router.put('/:id', authMiddleware, async (req, res) => {
+router.put('/:id', protect, async (req, res) => {
   try {
     const updatedPricing = await Pricing.findByIdAndUpdate(
       req.params.id,
@@ -42,7 +42,7 @@ router.put('/:id', authMiddleware, async (req, res) => {
 });
 
 // Delete pricing plan (Admin only)
-router.delete('/:id', authMiddleware, async (req, res) => {
+router.delete('/:id', protect, async (req, res) => {
   try {
     const deletedPricing = await Pricing.findByIdAndDelete(req.params.id);
     if (!deletedPricing) {

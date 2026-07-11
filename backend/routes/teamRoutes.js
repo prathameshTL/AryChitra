@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Team = require('../models/Team');
-const authMiddleware = require('../middleware/authMiddleware');
+const { protect } = require('../middleware/authMiddleware');
 
 // Get all team members
 router.get('/', async (req, res) => {
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 });
 
 // Create new team member (Admin only)
-router.post('/', authMiddleware, async (req, res) => {
+router.post('/', protect, async (req, res) => {
   try {
     const newTeamMember = new Team(req.body);
     await newTeamMember.save();
@@ -25,7 +25,7 @@ router.post('/', authMiddleware, async (req, res) => {
 });
 
 // Update team member (Admin only)
-router.put('/:id', authMiddleware, async (req, res) => {
+router.put('/:id', protect, async (req, res) => {
   try {
     const updatedTeamMember = await Team.findByIdAndUpdate(
       req.params.id,
@@ -42,7 +42,7 @@ router.put('/:id', authMiddleware, async (req, res) => {
 });
 
 // Delete team member (Admin only)
-router.delete('/:id', authMiddleware, async (req, res) => {
+router.delete('/:id', protect, async (req, res) => {
   try {
     const deletedTeamMember = await Team.findByIdAndDelete(req.params.id);
     if (!deletedTeamMember) {

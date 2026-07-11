@@ -3,6 +3,8 @@ const router = express.Router();
 const Order = require('../models/Order');
 const nodemailer = require('nodemailer');
 const { protect } = require('../middleware/authMiddleware');
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 
 // Setup nodemailer transporter
 let transporter;
@@ -46,13 +48,26 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: 'Please provide all required fields.' });
     }
 
+    let userId = null;
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+      try {
+        const token = req.headers.authorization.split(' ')[1];
+        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallback_secret');
+        userId = decoded.id;
+      } catch (err) {
+        // Ignore invalid token, just don't attach user
+        console.log('Invalid optional token provided for order');
+      }
+    }
+
     const newOrder = new Order({
       name,
       email,
       phone,
       websiteType,
       budget,
-      details
+      details,
+      userId
     });
 
     const savedOrder = await newOrder.save();
@@ -96,3 +111,16 @@ router.get('/', protect, async (req, res) => {
 });
 
 module.exports = router;
+
+// PUT /api/orders/:id
+// Update order status (Admin only)
+router.put('/:id', protect, async (req, res) => {
+  try {
+    const { status } = req.body;
+    const order = await Order.findByIdAndUpdate(req.params.id, { status }, { new: true });
+    if (!order) return res.status(404).json({ message: 'Order not found' });
+    res.json(order);
+  } catch (error) {
+    res.status(400).json({ message: 'Error updating order', error: error.message });
+  }
+});

@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Github, Twitter, Linkedin, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { subscribeNewsletter } from '../utils/api';
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState({ loading: false, message: '', type: '' });
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    if (!email) return;
+    setStatus({ loading: true, message: '', type: '' });
+    try {
+      const res = await subscribeNewsletter(email);
+      setStatus({ loading: false, message: res.message || 'Subscribed successfully!', type: 'success' });
+      setEmail('');
+    } catch (error) {
+      setStatus({ loading: false, message: error.message || 'Failed to subscribe', type: 'error' });
+    }
+  };
+
   const handleScrollTop = (e) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -64,6 +81,8 @@ const Footer = () => {
                 { name: 'Why Choose Us', path: '/why-choose-us' },
                 { name: 'Portfolio', path: '/portfolio' },
                 { name: 'Latest Blog', path: '/blog' },
+                { name: 'Careers', path: '/careers' },
+                { name: 'Client Portal', path: '/client/login' },
               ].map((link) => (
                 <li key={link.name}>
                   <Link
@@ -135,28 +154,40 @@ const Footer = () => {
             </ul>
 
             <h4 style={{ fontSize: '1rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>Newsletter</h4>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
-              <input
-                type="email"
-                placeholder="Your email address"
-                style={{
-                  flex: 1,
-                  padding: '0.8rem 1rem',
-                  background: 'var(--glass-bg)',
-                  border: '1px solid var(--border-color)',
-                  borderRadius: '8px',
-                  color: 'var(--text-primary)',
-                  outline: 'none',
-                  fontSize: '0.9rem'
-                }}
-              />
-              <button
-                className="btn btn-primary"
-                style={{ padding: '0.8rem 1.2rem', borderRadius: '8px', flexShrink: 0, whiteSpace: 'nowrap' }}
-              >
-                Subscribe
-              </button>
-            </div>
+            <form onSubmit={handleSubscribe} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  style={{
+                    flex: 1,
+                    padding: '0.8rem 1rem',
+                    background: 'var(--glass-bg)',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: '8px',
+                    color: 'var(--text-primary)',
+                    outline: 'none',
+                    fontSize: '0.9rem'
+                  }}
+                  required
+                />
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  disabled={status.loading}
+                  style={{ padding: '0.8rem 1.2rem', borderRadius: '8px', flexShrink: 0, whiteSpace: 'nowrap', opacity: status.loading ? 0.7 : 1 }}
+                >
+                  {status.loading ? 'Subscribing...' : 'Subscribe'}
+                </button>
+              </div>
+              {status.message && (
+                <span style={{ fontSize: '0.85rem', color: status.type === 'success' ? '#10b981' : '#ef4444', marginTop: '0.2rem' }}>
+                  {status.message}
+                </span>
+              )}
+            </form>
           </div>
         </div>
 

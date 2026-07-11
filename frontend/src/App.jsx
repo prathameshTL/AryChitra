@@ -21,10 +21,17 @@ import OrderPage from './pages/OrderPage';
 import ProjectDetailPage from './pages/ProjectDetailPage';
 import PricingPage from './pages/PricingPage';
 import TeamPage from './pages/TeamPage';
+import CareersPage from './pages/CareersPage';
+import JobDetailsPage from './pages/JobDetailsPage';
+import CaseStudiesPage from './pages/CaseStudiesPage';
+import CaseStudyDetailPage from './pages/CaseStudyDetailPage';
 
 // Admin Pages
 import AdminLoginPage from './pages/AdminLoginPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
+
+import ClientLoginPage from './pages/ClientLoginPage';
+import ClientDashboardPage from './pages/ClientDashboardPage';
 
 // Service Pages (Preserved for backward compatibility, but we will have a unified one)
 import UiUxPage from './pages/UiUxPage';
@@ -50,6 +57,10 @@ const AnimatedRoutes = () => {
         <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
         <Route path="/pricing" element={<PageTransition><PricingPage /></PageTransition>} />
         <Route path="/team" element={<PageTransition><TeamPage /></PageTransition>} />
+        <Route path="/careers" element={<PageTransition><CareersPage /></PageTransition>} />
+        <Route path="/careers/:id" element={<PageTransition><JobDetailsPage /></PageTransition>} />
+        <Route path="/case-studies" element={<PageTransition><CaseStudiesPage /></PageTransition>} />
+        <Route path="/case-studies/:id" element={<PageTransition><CaseStudyDetailPage /></PageTransition>} />
         
         {/* Preserved Routes */}
         <Route path="/services/ui-ux" element={<PageTransition><UiUxPage /></PageTransition>} />
@@ -62,6 +73,10 @@ const AnimatedRoutes = () => {
         {/* Admin Routes */}
         <Route path="/admin/login" element={<AdminLoginPage />} />
         <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+
+        {/* Client Routes */}
+        <Route path="/client/login" element={<ClientLoginPage />} />
+        <Route path="/client/dashboard" element={<ClientDashboardPage />} />
       </Routes>
     </AnimatePresence>
   );
