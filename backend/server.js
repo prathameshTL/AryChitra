@@ -2,8 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
 require('dotenv').config();
-
 const orderRoutes = require('./routes/orderRoutes');
 const contactRoutes = require('./routes/contactRoutes');
 const authRoutes = require('./routes/authRoutes');
@@ -24,8 +27,20 @@ const paymentRoutes = require('./routes/paymentRoutes');
 const app = express();
   
 // Middleware
-app.use(cors());
+app.use(helmet({ crossOriginResourcePolicy: false })); // allows loading cross-origin resources like images
+app.use(cors({ origin: process.env.FRONTEND_URL || '*' })); // Restrict in production
 app.use(express.json());
+
+// Sanitize data
+app.use(mongoSanitize());
+app.use(xss());
+
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 mins
+  max: 150 // limit each IP to 150 requests per windowMs
+});
+app.use('/api', limiter);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Database Connection
