@@ -63,3 +63,6 @@ export const getPricing = () => request('/pricing');
 export const createPricingPlan = (payload) => request('/pricing', { method: 'POST', body: JSON.stringify(payload) });
 export const updatePricingPlan = (id, payload) => request(`/pricing/${id}`, { method: 'PUT', body: JSON.stringify(payload) });
 export const deletePricingPlan = (id) => request(`/pricing/${id}`, { method: 'DELETE' });
+
+// Newsletter
+export const subscribeNewsletter = (email) => request('/newsletter/subscribe', { method: 'POST', body: JSON.stringify({ email }) });
