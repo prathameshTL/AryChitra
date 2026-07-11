@@ -62,7 +62,7 @@ const AboutPage = () => {
         canonicalUrl="https://arychitra.com/about"
       />
       {/* Hero Banner */}
-      <section style={{ minHeight: '100vh', display: 'flex', alignItems: 'flex-start', position: 'relative', overflow: 'hidden', paddingTop: 'calc(var(--nav-height) + 2rem)' }}>
+      <section style={{ padding: '120px 0 60px', position: 'relative', overflow: 'hidden' }}>
         <div className="glow-orb glow-orb-purple" style={{ width: '400px', height: '400px', top: '-10%', right: '-10%' }} />
         <div className="container" style={{ position: 'relative', zIndex: 1, width: '100%' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '4rem', alignItems: 'center' }} className="about-hero-grid">
@@ -70,16 +70,16 @@ const AboutPage = () => {
             
             {/* Left Content */}
             <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
-              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} style={{ marginBottom: '1rem' }}>
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} style={{ marginBottom: '0.25rem', marginTop: '-15px' }}>
                 <span className="section-badge">
                   🚀 Empowering Digital Transformation
                 </span>
               </motion.div>
-              <h1 style={{ fontSize: 'clamp(3.5rem, 6vw, 5rem)', marginBottom: '1.5rem', letterSpacing: '-1px', lineHeight: 1.1 }}>
-                About <br/><span className="text-gradient">AryChitra</span>
+              <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '1.5rem', letterSpacing: '-1px', lineHeight: 1.1 }}>
+                The Vision Behind <br/><span className="text-gradient">AryChitra</span>
               </h1>
-              <p style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '2.5rem' }}>
-                We are a collective of digital craftsmen, engineers, and visionaries dedicated to building the technology of tomorrow, today.
+              <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '2.5rem' }}>
+                We are a collective of digital craftsmen, engineers, and visionaries dedicated to building the technology of tomorrow, today. By combining deep technical expertise with innovative design, we engineer scalable solutions that empower businesses to thrive in the digital age.
               </p>
               
               {/* CTAs matching Home page */}
@@ -107,7 +107,7 @@ const AboutPage = () => {
                 <img 
                   src="/WhatsApp Image 2026-07-10 at 2.35.16 PM.jpeg" 
                   alt="AryChitra Team" 
-                  style={{ width: '100%', height: 'auto', borderRadius: '12px', display: 'block', objectFit: 'cover', boxShadow: 'var(--shadow-lg)' }}
+                  style={{ width: '100%', height: '400px', borderRadius: '12px', display: 'block', objectFit: 'cover', boxShadow: 'var(--shadow-lg)' }}
                 />
               </div>
             </motion.div>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import CtaBanner from '../components/CtaBanner';
 import SEO from '../components/SEO';
 
@@ -142,16 +142,52 @@ const ServicesPage = () => {
         keywords="enterprise web development, mobile app development, UI/UX design, cloud solutions, DevOps, AI integration, AryChitra services"
         canonicalUrl="https://arychitra.com/services"
       />
-      <section style={{ padding: '8rem 0 4rem', background: 'var(--bg-tertiary)' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', marginBottom: '1.5rem', letterSpacing: '-1px' }}>
-              Our <span className="text-gradient">Services</span>
-            </h1>
-            <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto' }}>
-              Comprehensive digital solutions engineered for scale, performance, and aesthetic excellence. Explore how we can transform your business.
-            </p>
-          </motion.div>
+      <section style={{ padding: '120px 0 60px', position: 'relative', overflow: 'hidden' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '4rem', alignItems: 'center' }} className="hero-grid">
+            <style>{`@media (min-width: 992px) { .hero-grid { grid-template-columns: 1fr 1fr !important; } }`}</style>
+            
+            {/* Left Content */}
+            <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} style={{ marginBottom: '0.25rem' }}>
+                <span className="section-badge">
+                  🚀 DIGITAL EXCELLENCE
+                </span>
+              </motion.div>
+              <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '1.5rem', letterSpacing: '-1px', lineHeight: 1.1 }}>
+                Transformative <br/><span className="text-gradient">Technology</span>
+              </h1>
+              <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '2.5rem' }}>
+                Comprehensive digital solutions engineered for scale, performance, and aesthetic excellence. We go beyond basic development to deliver full-stack enterprise capabilities—from cutting-edge cloud architecture and AI integration to seamless mobile experiences.
+              </p>
+              
+              {/* CTAs */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}
+              >
+                <Link to="/contact" className="btn btn-primary" style={{ textDecoration: 'none' }}>
+                  Start a Project
+                </Link>
+                <Link to="/portfolio" className="btn btn-secondary" style={{ textDecoration: 'none' }}>
+                  View Case Studies
+                </Link>
+              </motion.div>
+            </motion.div>
+
+            {/* Right Image */}
+            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.2 }}>
+              <div style={{ position: 'relative' }}>
+                <img 
+                  src="/Gemini_Generated_Image_x20ju8x20ju8x20j.png" 
+                  alt="AryChitra Services" 
+                  style={{ height: '400px', width: 'auto', margin: '0 auto', borderRadius: '12px', display: 'block', boxShadow: 'var(--shadow-lg)' }}
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
