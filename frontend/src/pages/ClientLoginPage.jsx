@@ -40,7 +40,7 @@ function ClientLoginPage() {
 
   return (
     <div className="section" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--bg-secondary)' }}>
-      <SEO title="Client Login | AryChitra" description="Client portal login" />
+      <SEO title="Client Login" description="Client portal login" />
       
       <div className="card" style={{ width: '100%', maxWidth: '400px', padding: '2.5rem', backgroundColor: 'var(--card-bg)', borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-lg)' }}>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
