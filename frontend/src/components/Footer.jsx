@@ -81,6 +81,8 @@ const Footer = () => {
                 { name: 'Why Choose Us', path: '/why-choose-us' },
                 { name: 'Portfolio', path: '/portfolio' },
                 { name: 'Latest Blog', path: '/blog' },
+                { name: 'Careers', path: '/careers' },
+                { name: 'Client Portal', path: '/client/login' },
               ].map((link) => (
                 <li key={link.name}>
                   <Link

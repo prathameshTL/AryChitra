@@ -182,7 +182,23 @@ const Navbar = () => {
             >
               Get a Quote
             </Link>
-            <style>{`@media (min-width: 992px) { #nav-cta-desktop { display: inline-flex !important; } .nav-links { display: flex !important; } } @media (max-width: 991px) { .nav-links { display: none !important; } }`}</style>
+            <Link
+              to="/client/login"
+              className="btn"
+              style={{
+                padding: '0.5rem 1.2rem',
+                fontSize: '0.8rem',
+                display: 'none',
+                textDecoration: 'none',
+                background: 'transparent',
+                border: '1px solid var(--accent-blue)',
+                color: 'var(--text-primary)',
+              }}
+              id="nav-portal-desktop"
+            >
+              Client Portal
+            </Link>
+            <style>{`@media (min-width: 992px) { #nav-cta-desktop, #nav-portal-desktop { display: inline-flex !important; } .nav-links { display: flex !important; } } @media (max-width: 991px) { .nav-links { display: none !important; } }`}</style>
 
             {/* Mobile Toggle */}
             <button
@@ -294,6 +310,20 @@ const Navbar = () => {
                 style={{ marginTop: '1.5rem', textAlign: 'center', textDecoration: 'none' }}
               >
                 Get a Quote
+              </Link>
+              <Link
+                to="/client/login"
+                className="btn"
+                style={{ 
+                  marginTop: '0.5rem', 
+                  textAlign: 'center', 
+                  textDecoration: 'none',
+                  background: 'transparent',
+                  border: '1px solid var(--accent-blue)',
+                  color: 'var(--text-primary)'
+                }}
+              >
+                Client Portal
               </Link>
             </motion.div>
           </>

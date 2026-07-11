@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 const orderRoutes = require('./routes/orderRoutes');
@@ -14,12 +15,18 @@ const blogRoutes = require('./routes/blogRoutes');
 const teamRoutes = require('./routes/teamRoutes');
 const pricingRoutes = require('./routes/pricingRoutes');
 const newsletterRoutes = require('./routes/newsletterRoutes');
+const jobRoutes = require('./routes/jobRoutes');
+const caseStudyRoutes = require('./routes/caseStudyRoutes');
+const clientAuthRoutes = require('./routes/clientAuthRoutes');
+const clientOrderRoutes = require('./routes/clientOrderRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
 
 const app = express();
   
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Database Connection
 const PORT = process.env.PORT;
@@ -41,6 +48,11 @@ app.use('/api/blogs', blogRoutes);
 app.use('/api/team', teamRoutes);
 app.use('/api/pricing', pricingRoutes);
 app.use('/api/newsletter', newsletterRoutes);
+app.use('/api/jobs', jobRoutes);
+app.use('/api/case-studies', caseStudyRoutes);
+app.use('/api/client/auth', clientAuthRoutes);
+app.use('/api/client/orders', clientOrderRoutes);
+app.use('/api/payments', paymentRoutes);
 
 // Base route for testing
 app.get('/', (req, res) => {

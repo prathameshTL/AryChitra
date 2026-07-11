@@ -33,19 +33,118 @@ function OrderPage() {
       details: formData.company ? `Company: ${formData.company}\n\n${formData.description}` : formData.description
     };
 
+    const loadRazorpay = () => {
+      return new Promise((resolve) => {
+        const script = document.createElement('script');
+        script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+        script.onload = () => resolve(true);
+        script.onerror = () => resolve(false);
+        document.body.appendChild(script);
+      });
+    };
+
     try {
-      const res = await fetch(`${API_BASE}/orders`, {
+      // 1. Load Razorpay script
+      const resLoad = await loadRazorpay();
+      if (!resLoad) {
+        throw new Error('Razorpay SDK failed to load. Are you online?');
+      }
+
+      // 2. Submit the order to our backend first
+      const token = localStorage.getItem('clientToken');
+      const headers = { 'Content-Type': 'application/json' };
+      if (token) headers['Authorization'] = `Bearer ${token}`;
+
+      const resOrder = await fetch(`${API_BASE}/orders`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify(payload)
       });
 
-      if (!res.ok) {
-        throw new Error('Failed to submit order');
+      if (!resOrder.ok) throw new Error('Failed to submit order');
+      const savedOrder = await resOrder.json();
+
+      // 3. Create payment order in backend
+      const resPayment = await fetch(`${API_BASE}/payments/create-order`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: 1000 }) // Flat 1000 INR fee
+      });
+      if (!resPayment.ok) throw new Error('Payment initialization failed');
+      const paymentOrder = await resPayment.json();
+
+      // 4. Open Razorpay Checkout or handle Mock Payment
+      if (paymentOrder.id.startsWith('mock_order_')) {
+        // Skip Razorpay widget, go straight to verify
+        const resVerify = await fetch(`${API_BASE}/payments/verify-payment`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            razorpay_order_id: paymentOrder.id,
+            razorpay_payment_id: 'mock_payment_123',
+            razorpay_signature: 'mock_signature'
+          })
+        });
+
+        if (resVerify.ok) {
+          alert('Payment successful! Your project request has been received.');
+          setFormData({ name: '', email: '', phone: '', company: '', service: 'web', budget: '', description: '' });
+        } else {
+          alert('Payment verification failed.');
+        }
+        return;
       }
 
-      alert('Thank you for reaching out! Your project request has been received. We will get back to you shortly.');
-      setFormData({ name: '', email: '', phone: '', company: '', service: 'web', budget: '', description: '' });
+      const options = {
+        key: 'rzp_test_fallback', // Typically comes from env or backend
+        amount: paymentOrder.amount,
+        currency: paymentOrder.currency,
+        name: 'AryChitra',
+        description: 'Consulting Fee',
+        order_id: paymentOrder.id,
+        handler: async function (response) {
+          try {
+            // Verify payment
+            const resVerify = await fetch(`${API_BASE}/payments/verify-payment`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature
+              })
+            });
+
+            if (resVerify.ok) {
+              alert('Payment successful! Your project request has been received.');
+              setFormData({ name: '', email: '', phone: '', company: '', service: 'web', budget: '', description: '' });
+              
+              // Optional: Update order status to 'In Progress' via backend
+              // await fetch(`${API_BASE}/orders/${savedOrder.order._id}`, { method: 'PUT', headers, body: JSON.stringify({ status: 'In Progress' }) });
+            } else {
+              alert('Payment verification failed.');
+            }
+          } catch (err) {
+            console.error(err);
+            alert('Error verifying payment.');
+          }
+        },
+        prefill: {
+          name: formData.name,
+          email: formData.email,
+          contact: formData.phone
+        },
+        theme: {
+          color: '#6c63ff'
+        }
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.on('payment.failed', function (response) {
+        alert('Payment Failed: ' + response.error.description);
+      });
+      rzp.open();
+
     } catch (err) {
       console.error(err);
       setError('An error occurred while submitting your request. Please try again later.');
@@ -127,7 +226,7 @@ function OrderPage() {
             {error && <div style={{ color: 'red', marginTop: '1rem', textAlign: 'center' }}>{error}</div>}
 
             <button type="submit" className="btn btn-primary" disabled={loading} style={{ width: '100%', padding: '1rem', marginTop: '1.5rem', fontSize: '1.1rem', opacity: loading ? 0.7 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}>
-              {loading ? 'Submitting...' : 'Submit Request'}
+              {loading ? 'Processing...' : 'Pay Consulting Fee & Submit Request'}
             </button>
           </form>
         </div>
