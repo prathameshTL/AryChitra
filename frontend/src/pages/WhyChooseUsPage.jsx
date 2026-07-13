@@ -87,12 +87,9 @@ const WhyChooseUsPage = () => {
             {/* Right Image */}
             <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.2 }}>
               <div style={{ position: 'relative' }}>
-                <video 
-                  src="/video_bana_kakrde.mp4" 
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
+                <img 
+                  src="/WhatsApp Image 2026-07-10 at 17.11.28.jpeg" 
+                  alt="Why Choose AryChitra"
                   style={{ width: '100%', height: 'auto', borderRadius: '12px', display: 'block', objectFit: 'cover', boxShadow: 'var(--shadow-lg)' }}
                 />
               </div>
