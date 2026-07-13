@@ -20,7 +20,7 @@ import BlogPostPage from './pages/BlogPostPage';
 import OrderPage from './pages/OrderPage';
 import ProjectDetailPage from './pages/ProjectDetailPage';
 import PricingPage from './pages/PricingPage';
-import TeamPage from './pages/TeamPage';
+
 import CareersPage from './pages/CareersPage';
 import JobDetailsPage from './pages/JobDetailsPage';
 import CaseStudiesPage from './pages/CaseStudiesPage';
@@ -56,7 +56,7 @@ const AnimatedRoutes = () => {
         <Route path="/blog/:id" element={<PageTransition><BlogPostPage /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
         <Route path="/pricing" element={<PageTransition><PricingPage /></PageTransition>} />
-        <Route path="/team" element={<PageTransition><TeamPage /></PageTransition>} />
+
         <Route path="/careers" element={<PageTransition><CareersPage /></PageTransition>} />
         <Route path="/careers/:id" element={<PageTransition><JobDetailsPage /></PageTransition>} />
         <Route path="/case-studies" element={<PageTransition><CaseStudiesPage /></PageTransition>} />
